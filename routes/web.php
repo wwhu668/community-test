@@ -23,3 +23,7 @@ Route::resource('questions', 'QuestionsController', ['names' => [
     'create' => 'question.create',
     'show' => 'question.show',
 ]]);
+
+Route::post('questions/{question}/answer', 'AnswerController@store');
+
+Route::get('question/{question}/follow', 'QuestionFollowController@follow');
