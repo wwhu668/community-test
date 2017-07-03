@@ -36,7 +36,7 @@ class QuestionRepository
     {
         return Question::with('user')->published()->latest('updated_at')->get();
     }
-    
+
     public function normalizeTopic(array $topics)
     {
         $ids = Topic::pluck('id');
