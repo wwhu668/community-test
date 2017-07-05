@@ -14,6 +14,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script>
+        @if(Auth::check())
+            window.Zhihu = {
+                name: "{{Auth::user()->name}}",
+                avatar: "{{Auth::user()->avatar}}"
+        };
+        @endif
+    </script>
 </head>
 <body>
     <div id="app">
