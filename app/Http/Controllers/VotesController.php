@@ -23,10 +23,7 @@ class VotesController extends Controller
     {
         $user = Auth::guard('api')->user();
 
-        if ($user->haVotedFor($id)) {
-            return response()->json(['voted' => true]);
-        }
-        return response()->json(['voted' => false]);
+        return response()->json(['voted' => $user->hasVotedFor($id)]);
     }
 
     public function vote($id)

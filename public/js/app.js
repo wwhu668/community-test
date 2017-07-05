@@ -11123,7 +11123,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(52);
 
 
 /***/ }),
@@ -11150,6 +11150,7 @@ Vue.component('example', __webpack_require__(37));
 Vue.component('question-follow-button', __webpack_require__(40));
 Vue.component('user-follow-button', __webpack_require__(43));
 Vue.component('user-vote-button', __webpack_require__(46));
+Vue.component('send-message', __webpack_require__(49));
 
 var app = new Vue({
   el: '#app'
@@ -43013,6 +43014,206 @@ if (false) {
 
 /***/ }),
 /* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(50),
+  /* template */
+  __webpack_require__(51),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/vagrant/Code/zhihu-app/resources/assets/js/components/SendMessage.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] SendMessage.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7d2aa36a", Component.options)
+  } else {
+    hotAPI.reload("data-v-7d2aa36a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['user'],
+    data: function data() {
+        return {
+            body: '',
+            status: false
+        };
+    },
+
+    methods: {
+        store: function store() {
+            var _this = this;
+
+            axios.post('/api/message/store', { 'user': this.user, 'body': this.body }).then(function (response) {
+                _this.status = response.data.status;
+                setTimeout(function () {
+                    $('#modal-send-message').modal('hide');
+                }, 2000);
+            });
+        },
+        showSendMessageForm: function showSendMessageForm() {
+            $('#modal-send-message').modal('show');
+        }
+    }
+});
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('button', {
+    staticClass: "btn btn-default pull-right",
+    staticStyle: {
+      "margin-top": "-36px"
+    },
+    on: {
+      "click": _vm.showSendMessageForm
+    }
+  }, [_vm._v("发送私信")]), _vm._v(" "), _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "modal-send-message",
+      "tabindex": "-1",
+      "role": "dialog"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog"
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [(!_vm.status) ? _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.body),
+      expression: "body"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "body"
+    },
+    domProps: {
+      "value": (_vm.body)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.body = $event.target.value
+      }
+    }
+  }) : _vm._e(), _vm._v(" "), (_vm.status) ? _c('div', {
+    staticClass: "alert alert-success"
+  }, [_c('strong', [_vm._v("私信发送成功")])]) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal"
+    }
+  }, [_vm._v("关闭")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.store
+    }
+  }, [_vm._v("\n                        发送私信\n                    ")])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button ",
+      "data-dismiss": "modal",
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")]), _vm._v(" "), _c('h4', {
+    staticClass: "modal-title"
+  }, [_vm._v("\n                        发送私信\n                    ")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7d2aa36a", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

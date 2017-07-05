@@ -75,9 +75,14 @@ class User extends Authenticatable
         return $this->votes()->toggle($answer);
     }
 
-    public function haVotedFor($answer)
+    public function hasVotedFor($answer)
     {
         return !! $this->votes()->where('answer_id', $answer)->count();
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'to_user_id');
     }
 
     public function followThisUser($user)
