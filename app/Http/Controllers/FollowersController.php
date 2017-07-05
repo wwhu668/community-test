@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewUserFollowNotification;
 use App\Repositories\UserPepository;
 use Illuminate\Http\Request;
 use Auth;
@@ -37,15 +38,16 @@ class FollowersController extends Controller
 
         $followed = Auth::guard('api')->user()->followThisUser($userToFollow->id);
 
-        if (empty($followed['attached'])) {
-            $userToFollow->decrement('followers_count');
+        if (count($followed['attached']) > 0) {
+            $userToFollow->notify(new NewUserFollowNotification());
 
-            return response()->json(['followed' => false]);
+            $userToFollow->increment('followers_count');
+
+            return response()->json(['followed' => true]);
         }
 
-        // TODO
-        $userToFollow->increment('followers_count');
+        $userToFollow->decrement('followers_count');
 
-        return response()->json(['followed' => true]);
+        return response()->json(['followed' => false]);
     }
 }
