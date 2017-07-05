@@ -26,7 +26,7 @@ class FollowersController extends Controller
 
         $followers = $user->followersUser()->pluck('follower_id')->toArray();
 
-        if(in_array(Auth::guard('api')->user()->id, $followers)) {
+        if(in_array(user('api')->id, $followers)) {
             return response()->json(['followed' => true]);
         }
         return response()->json(['followed' => false]);
@@ -36,7 +36,7 @@ class FollowersController extends Controller
     {
         $userToFollow = $this->user->byId(request('user'));
 
-        $followed = Auth::guard('api')->user()->followThisUser($userToFollow->id);
+        $followed = user('api')->followThisUser($userToFollow->id);
 
         if (count($followed['attached']) > 0) {
             $userToFollow->notify(new NewUserFollowNotification());

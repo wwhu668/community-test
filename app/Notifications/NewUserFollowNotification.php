@@ -44,7 +44,7 @@ class NewUserFollowNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'name' => Auth::guard('api')->user()->name
+            'name' => user('api')->name
         ];
     }
 

@@ -10,7 +10,7 @@ class Mailer
     {
         $content = new SendCloudTemplate($template, $data);
 
-        \Mail::raw($template, function ($message) use ($email) {
+        \Mail::raw($content, function ($message) use ($email) {
             $message->from('wuwenhu940226@163.com', 'Laravel');
 
             $message->to($email);

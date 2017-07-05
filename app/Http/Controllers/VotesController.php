@@ -21,7 +21,7 @@ class VotesController extends Controller
 
     public function users($id)
     {
-        $user = Auth::guard('api')->user();
+        $user = user('api');
 
         return response()->json(['voted' => $user->hasVotedFor($id)]);
     }
@@ -30,7 +30,7 @@ class VotesController extends Controller
     {
         $answer = $this->answer->byId($id);
 
-        $voted = Auth::guard('api')->user()->voteFor($id);
+        $voted = user('api')->voteFor($id);
 
         if (count($voted['attached']) > 0) {
 
