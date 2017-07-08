@@ -31,6 +31,16 @@ Route::get('question/{question}/follow', 'QuestionFollowController@follow');
 Route::get('notifications', 'NotificationsController@index');
 Route::get('notifications/{notification}', 'NotificationsController@show');
 
+Route::get('avatar', 'UserController@avatar');
+Route::post('avatar', 'UserController@changeAvatar');
+
+
+Route::get('password', 'PasswordController@password');
+Route::post('password/update', 'PasswordController@update');
+
+Route::get('setting', 'SettingController@index');
+Route::post('setting', 'SettingController@store');
+
 Route::get('inbox', 'InboxController@index');
 Route::get('inbox/{userId}', 'InboxController@show');
 Route::post('inbox/{dialogId}/store', 'InboxController@store');

@@ -20,6 +20,9 @@
                 name: "{{Auth::user()->name}}",
                 avatar: "{{Auth::user()->avatar}}"
         };
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+        ]); ?>;
         @endif
     </script>
 </head>

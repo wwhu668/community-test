@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'api_token', 'confirmation_token', 'is_active'
+        'name', 'email', 'password', 'avatar', 'api_token', 'confirmation_token', 'is_active', 'settings'
     ];
 
     /**
@@ -29,6 +29,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $casts = [
+        'settings' => 'array'
+    ];
+
+    public function settings()
+    {
+        return new Setting($this);
+    }
 
     public function answers()
     {
