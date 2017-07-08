@@ -22,7 +22,9 @@ class VotesController extends Controller
     public function users($id)
     {
         $user = user('api');
-
+        if (empty($user)) {
+            return response()->json(['voted' => false]);
+        }
         return response()->json(['voted' => $user->hasVotedFor($id)]);
     }
 

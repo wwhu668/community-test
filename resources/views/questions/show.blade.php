@@ -55,7 +55,9 @@
                         @foreach($question->answers as $answer)
                             <div class="media">
                                 <div class="media-left">
+                                    {{--@if(Auth::check())--}}
                                     <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
+                                    {{--@endif--}}
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">

@@ -50,3 +50,24 @@ a.topic:hover {
 .statics-item {
     padding: 2px 20px;
 }
+
+.messages-list {
+    margin-top: 80px;
+}
+
+.media.unread {
+    background-color: #fff9ca;
+}
+
+.notifications {
+    position: relative;
+    padding: 8px 15px 8px 25px;
+    color: #666666;
+    border: none;
+    border-top: 1px dotted #EEEEEE;
+    background: transparent;
+}
+
+.notifications.unread {
+    background: #fff9ca;
+}
